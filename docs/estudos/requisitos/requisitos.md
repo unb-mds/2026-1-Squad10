@@ -333,8 +333,6 @@ Os Requisitos Não Funcionais (RNFs) são os principais direcionadores da arquit
 
 > Em outras palavras: os RNFs influenciam diretamente as decisões arquiteturais.
 
----
-
 ### Papel dos RNFs na arquitetura
 
 * Servem como **critério para escolher estilos arquiteturais** (ex: camadas, microserviços)
@@ -345,8 +343,6 @@ Os Requisitos Não Funcionais (RNFs) são os principais direcionadores da arquit
   * tecnologias utilizadas
 * Determinam **trade-offs** (ex: desempenho vs. manutenibilidade)
 
----
-
 ### Trade-offs (trocas) arquiteturais
 
 Nem todos os RNFs podem ser maximizados ao mesmo tempo. A arquitetura é, na prática, um equilíbrio entre RNFs.
@@ -356,8 +352,6 @@ Nem todos os RNFs podem ser maximizados ao mesmo tempo. A arquitetura é, na pr�
 * Mais camadas → melhor **manutenção**
 * Porém → pior **desempenho**
 
----
-
 ### Exemplos de impacto na arquitetura
 
 * **Desempenho** → uso de cache, sistemas distribuídos
@@ -366,11 +360,55 @@ Nem todos os RNFs podem ser maximizados ao mesmo tempo. A arquitetura é, na pr�
 * **Manutenibilidade** → modularização, separação de responsabilidades
 * **Disponibilidade** → redundância e tolerância a falhas
 
----
-
 ### Importância de definir cedo
 
 * RNFs devem ser considerados **antes do design arquitetural**
 * Mudanças depois são **caras e difíceis**
 * Quanto mais complexo o sistema, mais a arquitetura depende dos RNFs
+
 ---
+## 📚 Documentação de Requisitos: Wiki vs Repositório
+
+### O que é Wiki?
+
+Uma **Wiki** é um ambiente de documentação em formato de **páginas interligadas**, semelhante a um site.  
+O conteúdo é organizado por navegação e links, facilitando leitura e colaboração.
+
+### Repositório (docs/)
+
+A documentação é mantida em **arquivos (ex: `.md`) dentro do projeto**, organizada em pastas e versionada com Git.
+
+### Comparação
+
+| Critério              | Wiki                            | Repositório (`docs/`)            |
+| --------------------- | ------------------------------- | -------------------------------- |
+| Organização           | Páginas com navegação por links | Estrutura de pastas e arquivos   |
+| Edição                | Simples, via navegador          | Requer Git                       |
+| Versionamento         | Limitado                        | Completo (histórico de mudanças) |
+| Rastreabilidade       | Baixa                           | Alta (via commits e PRs)         |
+| Colaboração           | Fácil para não técnicos         | Melhor para times técnicos       |
+| Integração com código | Baixa                           | Total                            |
+| Controle de mudanças  | Menor                           | Maior                            |
+
+### Vantagens e Desvantagens
+
+|                  | Wiki                                                                                                      | Repositório                                                                                     |
+| ---------------- | --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| **Vantagens**    | - Fácil de usar e editar<br>- Boa navegação<br>- Acessível para todos os perfis                           | - Versionamento completo<br>- Integração com PRs e issues<br>- Maior controle e rastreabilidade |
+| **Desvantagens** | - Menor controle de versões<br>- Pode desatualizar facilmente<br>- Menor integração com o desenvolvimento | - Exige conhecimento básico de Git<br>- Menos amigável para não técnicos                        |
+
+
+---
+
+## 🎯 Recomendação
+
+> Utilizar **documentação no repositório (`docs/`) como padrão principal**.
+
+Considerando que o projeto está inserido em uma disciplina de Métodos e Desenvolvimento de Software, com caráter técnico e complexidade média, o uso do repositório permite aplicar na prática conceitos essenciais como versionamento, uso de branches, Pull Requests e rastreabilidade das decisões. Além disso, essa abordagem mantém a documentação integrada ao código, facilitando a organização, revisão e evolução do projeto ao longo do tempo.
+
+A Wiki pode ser utilizada de forma complementar, especialmente para facilitar a navegação ou apresentação do conteúdo, mas não deve ser a fonte principal da documentação.
+
+Material de apoio:
+- [https://www.altexsoft.com/blog/technical-documentation-in-software-development-types-best-practices-and-tools/](https://www.altexsoft.com/blog/technical-documentation-in-software-development-types-best-practices-and-tools/)
+- [https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis](https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis)
+- https://www.atlassian.com/work-management/knowledge-sharing/wiki
