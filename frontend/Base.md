@@ -12,3 +12,5 @@ Este documento detalha os componetes oficiais para o desenvolvimento da interfac
 | ![#8D0000](https://via.placeholder.com/15/8D0000?text=+) | **Vermelho Elegante**| `#8D0000` | Alertas, "Breaking News" e botões de ação (CTA). |
 
 ---
+
+ 
