@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#requisitos" class="md-skip">
+        <a href="#visao-geral" class="md-skip">
           Skip to content
         </a>
       
@@ -310,10 +310,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#funcionais" class="md-nav__link">
+  <a href="#objetivo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Funcionais
+        🎯 Objetivo
       
     </span>
   </a>
@@ -321,10 +321,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#nao-funcionais" class="md-nav__link">
+  <a href="#escopo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Não funcionais
+        📌 Escopo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#temas-principais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 Temas Principais
       
     </span>
   </a>
@@ -447,10 +458,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#funcionais" class="md-nav__link">
+  <a href="#objetivo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Funcionais
+        🎯 Objetivo
       
     </span>
   </a>
@@ -458,10 +469,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#nao-funcionais" class="md-nav__link">
+  <a href="#escopo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Não funcionais
+        📌 Escopo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#temas-principais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 Temas Principais
       
     </span>
   </a>
@@ -485,19 +507,160 @@
 
 
 
-<h1 id="requisitos">Requisitos</h1>
-<h2 id="funcionais">Funcionais</h2>
+<h1 id="visao-geral">📊 Visão Geral</h1>
+<h2 id="objetivo">🎯 Objetivo</h2>
+<p>Desenvolver uma plataforma para monitorar, classificar e analisar proposições legislativas relacionadas à proteção de crianças e adolescentes no ambiente digital.</p>
+<hr />
+<h2 id="escopo">📌 Escopo</h2>
+<p>O sistema irá:</p>
 <ul>
-<li>Coletar dados legislativos</li>
-<li>Permitir visualização</li>
-<li>Permitir filtros</li>
+<li>Coletar dados da API de Dados Abertos da Câmara dos Deputados  </li>
+<li>Extrair o inteiro teor das proposições  </li>
+<li>Classificar por subtema  </li>
+<li>Apresentar visualizações analíticas em um dashboard interativo  </li>
 </ul>
-<h2 id="nao-funcionais">Não funcionais</h2>
+<hr />
+<h2 id="temas-principais">🧠 Temas Principais</h2>
 <ul>
-<li>Boa performance</li>
-<li>Segurança</li>
-<li>Disponibilidade</li>
+<li>Cyberbullying  </li>
+<li>Proteção de dados de menores  </li>
+<li>Exploração sexual online  </li>
+<li>Controle parental  </li>
+<li>Regulação de plataformas digitais  </li>
+<li>Exposição a conteúdo nocivo  </li>
 </ul>
+<hr />
+<h1 id="personas">👤 Personas</h1>
+<h2 id="persona-principal-articuladora-de-ong">Persona Principal: Articuladora de ONG</h2>
+<ul>
+<li>Atua na defesa dos direitos de crianças e adolescentes  </li>
+<li>Precisa monitorar projetos de lei  </li>
+<li>Busca identificar ameaças ou oportunidades legislativas  </li>
+<li>Necessita identificar parlamentares aliados  </li>
+</ul>
+<hr />
+<h1 id="user-stories">📖 User Stories</h1>
+<h2 id="us01-descoberta-pelo-inteiro-teor">US01 – Descoberta pelo Inteiro Teor</h2>
+<p><strong>Como</strong> articuladora de ONG<br />
+<strong>Quero</strong> que o sistema classifique as leis lendo o texto completo<br />
+<strong>Para que</strong> eu consiga identificar ameaças mesmo quando não estão explícitas na ementa  </p>
+<h3 id="criterios-de-aceitacao">✔ Critérios de Aceitação</h3>
+<ul>
+<li>O sistema deve analisar o inteiro teor  </li>
+<li>Deve classificar mesmo sem menção na ementa  </li>
+<li>Deve exibir o resultado no dashboard  </li>
+</ul>
+<hr />
+<h2 id="us02-mapeamento-de-aliados">US02 – Mapeamento de Aliados</h2>
+<p><strong>Como</strong> articuladora de ONG<br />
+<strong>Quero</strong> visualizar ranking de deputados e partidos<br />
+<strong>Para</strong> saber com quem agendar reuniões  </p>
+<h3 id="criterios-de-aceitacao_1">✔ Critérios de Aceitação</h3>
+<ul>
+<li>Permitir seleção por subtema  </li>
+<li>Ordenar parlamentares por número de proposições  </li>
+<li>Mostrar partidos mais ativos  </li>
+</ul>
+<hr />
+<h2 id="us03-analise-temporal">US03 – Análise Temporal</h2>
+<p><strong>Como</strong> articuladora de ONG<br />
+<strong>Quero</strong> visualizar evolução temporal das proposições<br />
+<strong>Para</strong> identificar tendências  </p>
+<h3 id="criterios-de-aceitacao_2">✔ Critérios de Aceitação</h3>
+<ul>
+<li>Apresentar gráfico por ano  </li>
+<li>Permitir filtro por subtema  </li>
+<li>Mostrar crescimento ou queda  </li>
+</ul>
+<hr />
+<h1 id="requisitos-funcionais">📋 Requisitos Funcionais</h1>
+<h2 id="must-have">🔴 Must Have</h2>
+<ul>
+<li><strong>RF01</strong>: Extrair metadados da API  </li>
+<li><strong>RF02</strong>: Obter link do inteiro teor  </li>
+<li><strong>RF03</strong>: Extrair texto completo (PDF/TXT)  </li>
+<li><strong>RF04</strong>: Classificar por subtema usando NLP  </li>
+<li><strong>RF05</strong>: Exibir dashboard com volume por subtema  </li>
+<li><strong>RF06</strong>: Ranking de parlamentares  </li>
+<li><strong>RF07</strong>: Ranking de partidos  </li>
+</ul>
+<hr />
+<h2 id="should-have">🟡 Should Have</h2>
+<ul>
+<li><strong>RF08</strong>: Gráfico de evolução temporal  </li>
+<li><strong>RF09</strong>: Filtro por subtema  </li>
+</ul>
+<hr />
+<h2 id="could-have">🟢 Could Have</h2>
+<ul>
+<li><strong>RF10</strong>: Identificação automática de novos temas  </li>
+</ul>
+<hr />
+<h2 id="wont-have-mvp">⚪ Won't Have (MVP)</h2>
+<ul>
+<li><strong>RF11</strong>: Integração com API do Senado  </li>
+</ul>
+<hr />
+<h1 id="criterios-de-aceitacao-gherkin">✅ Critérios de Aceitação (Gherkin)</h1>
+<h2 id="cenario-classificacao-pelo-inteiro-teor">🧪 Cenário: Classificação pelo inteiro teor</h2>
+<p><strong>Dado que</strong> uma proposição não cita o tema na ementa<br />
+<strong>Quando</strong> o sistema analisa o texto completo<br />
+<strong>Então</strong> ela deve ser classificada corretamente  </p>
+<hr />
+<h2 id="cenario-visualizacao-de-ranking">🧪 Cenário: Visualização de ranking</h2>
+<p><strong>Dado que</strong> estou no dashboard<br />
+<strong>Quando</strong> seleciono o subtema "Cyberbullying"<br />
+<strong>Então</strong> o sistema deve mostrar deputados ordenados  </p>
+<hr />
+<h2 id="cenario-analise-temporal">🧪 Cenário: Análise temporal</h2>
+<p><strong>Dado que</strong> estou no dashboard<br />
+<strong>Quando</strong> seleciono um subtema<br />
+<strong>Então</strong> devo visualizar a evolução ao longo do tempo  </p>
+<hr />
+<h1 id="arquitetura">🏗️ Arquitetura</h1>
+<h2 id="pipeline-de-dados">🔄 Pipeline de Dados</h2>
+<ol>
+<li>Extração via API (Câmara/Senado)  </li>
+<li>Download do inteiro teor  </li>
+<li>Processamento com NLP  </li>
+<li>Classificação por temas e subtemas  </li>
+<li>Armazenamento estruturado  </li>
+</ol>
+<hr />
+<h2 id="camada-de-visualizacao">📊 Camada de Visualização</h2>
+<ul>
+<li>Dashboard interativo  </li>
+<li>Gráficos por subtema  </li>
+<li>Rankings de parlamentares  </li>
+<li>Filtros por período, tema e deputado  </li>
+</ul>
+<hr />
+<h2 id="principios-arquiteturais">⚙️ Princípios Arquiteturais</h2>
+<ul>
+<li>Separação entre processamento e visualização  </li>
+<li>Melhor desempenho e escalabilidade  </li>
+<li>Facilidade de manutenção  </li>
+</ul>
+<hr />
+<h1 id="mvp-produto-minimo-viavel">🚀 MVP (Produto Mínimo Viável)</h1>
+<h2 id="integracao-com-api">📡 Integração com API</h2>
+<ul>
+<li>Extração de dados  </li>
+<li>Download do inteiro teor  </li>
+<li>Processamento com NLP  </li>
+<li>Armazenamento  </li>
+</ul>
+<hr />
+<h2 id="dashboard">📊 Dashboard</h2>
+<ul>
+<li>Dados disponíveis  </li>
+<li>Classificação por subtema  </li>
+<li>Visualização por volume  </li>
+<li>Ranking de parlamentares  </li>
+</ul>
+<hr />
+<h2 id="criterio-geral">🎯 Critério Geral</h2>
+<p>O sistema deve permitir análise básica de proposições legislativas com base em temas e subtemas, apresentando os dados de forma clara no dashboard.</p>
 
 
 
