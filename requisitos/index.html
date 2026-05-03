@@ -460,7 +460,7 @@
   <a href="#objetivo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Objetivo
+        Objetivo
       
     </span>
   </a>
@@ -471,7 +471,7 @@
   <a href="#escopo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📌 Escopo
+        Escopo
       
     </span>
   </a>
@@ -482,7 +482,7 @@
   <a href="#temas-principais" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🧠 Temas Principais
+        Temas Principais
       
     </span>
   </a>
@@ -608,7 +608,7 @@
   <a href="#objetivo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Objetivo
+        Objetivo
       
     </span>
   </a>
@@ -619,7 +619,7 @@
   <a href="#escopo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📌 Escopo
+        Escopo
       
     </span>
   </a>
@@ -630,7 +630,7 @@
   <a href="#temas-principais" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🧠 Temas Principais
+        Temas Principais
       
     </span>
   </a>
@@ -655,10 +655,10 @@
 
 
 <h1 id="visao-geral">📊 Visão Geral</h1>
-<h2 id="objetivo">🎯 Objetivo</h2>
+<h2 id="objetivo">Objetivo</h2>
 <p>Desenvolver uma plataforma para monitorar, classificar e analisar proposições legislativas relacionadas à proteção de crianças e adolescentes no ambiente digital.</p>
 <hr />
-<h2 id="escopo">📌 Escopo</h2>
+<h2 id="escopo">Escopo</h2>
 <p>O sistema irá:</p>
 <ul>
 <li>Coletar dados da API de Dados Abertos da Câmara dos Deputados  </li>
@@ -667,7 +667,7 @@
 <li>Apresentar visualizações analíticas em um dashboard interativo  </li>
 </ul>
 <hr />
-<h2 id="temas-principais">🧠 Temas Principais</h2>
+<h2 id="temas-principais">Temas Principais</h2>
 <ul>
 <li>Cyberbullying  </li>
 <li>Proteção de dados de menores  </li>
@@ -686,7 +686,7 @@
 <li>Necessita identificar parlamentares aliados  </li>
 </ul>
 <hr />
-<h1 id="user-stories">📖 User Stories</h1>
+<h1 id="user-stories">User Stories</h1>
 <h2 id="us01-descoberta-pelo-inteiro-teor">US01 – Descoberta pelo Inteiro Teor</h2>
 <p><strong>Como</strong> articuladora de ONG<br />
 <strong>Quero</strong> que o sistema classifique as leis lendo o texto completo<br />
@@ -720,8 +720,8 @@
 <li>Mostrar crescimento ou queda  </li>
 </ul>
 <hr />
-<h1 id="requisitos-funcionais">📋 Requisitos Funcionais</h1>
-<h2 id="must-have">🔴 Must Have</h2>
+<h1 id="requisitos-funcionais">Requisitos Funcionais</h1>
+<h2 id="must-have">Must Have</h2>
 <ul>
 <li><strong>RF01</strong>: Extrair metadados da API  </li>
 <li><strong>RF02</strong>: Obter link do inteiro teor  </li>
@@ -732,40 +732,40 @@
 <li><strong>RF07</strong>: Ranking de partidos  </li>
 </ul>
 <hr />
-<h2 id="should-have">🟡 Should Have</h2>
+<h2 id="should-have">Should Have</h2>
 <ul>
 <li><strong>RF08</strong>: Gráfico de evolução temporal  </li>
 <li><strong>RF09</strong>: Filtro por subtema  </li>
 </ul>
 <hr />
-<h2 id="could-have">🟢 Could Have</h2>
+<h2 id="could-have">Could Have</h2>
 <ul>
 <li><strong>RF10</strong>: Identificação automática de novos temas  </li>
 </ul>
 <hr />
-<h2 id="wont-have-mvp">⚪ Won't Have (MVP)</h2>
+<h2 id="wont-have-mvp">Won't Have (MVP)</h2>
 <ul>
 <li><strong>RF11</strong>: Integração com API do Senado  </li>
 </ul>
 <hr />
-<h1 id="criterios-de-aceitacao-gherkin">✅ Critérios de Aceitação (Gherkin)</h1>
-<h2 id="cenario-classificacao-pelo-inteiro-teor">🧪 Cenário: Classificação pelo inteiro teor</h2>
+<h1 id="criterios-de-aceitacao-gherkin">Critérios de Aceitação (Gherkin)</h1>
+<h2 id="cenario-classificacao-pelo-inteiro-teor">Cenário: Classificação pelo inteiro teor</h2>
 <p><strong>Dado que</strong> uma proposição não cita o tema na ementa<br />
 <strong>Quando</strong> o sistema analisa o texto completo<br />
 <strong>Então</strong> ela deve ser classificada corretamente  </p>
 <hr />
-<h2 id="cenario-visualizacao-de-ranking">🧪 Cenário: Visualização de ranking</h2>
+<h2 id="cenario-visualizacao-de-ranking">Cenário: Visualização de ranking</h2>
 <p><strong>Dado que</strong> estou no dashboard<br />
 <strong>Quando</strong> seleciono o subtema "Cyberbullying"<br />
 <strong>Então</strong> o sistema deve mostrar deputados ordenados  </p>
 <hr />
-<h2 id="cenario-analise-temporal">🧪 Cenário: Análise temporal</h2>
+<h2 id="cenario-analise-temporal">Cenário: Análise temporal</h2>
 <p><strong>Dado que</strong> estou no dashboard<br />
 <strong>Quando</strong> seleciono um subtema<br />
 <strong>Então</strong> devo visualizar a evolução ao longo do tempo  </p>
 <hr />
-<h1 id="arquitetura">🏗️ Arquitetura</h1>
-<h2 id="pipeline-de-dados">🔄 Pipeline de Dados</h2>
+<h1 id="arquitetura">Arquitetura</h1>
+<h2 id="pipeline-de-dados">Pipeline de Dados</h2>
 <ol>
 <li>Extração via API (Câmara/Senado)  </li>
 <li>Download do inteiro teor  </li>
@@ -774,7 +774,7 @@
 <li>Armazenamento estruturado  </li>
 </ol>
 <hr />
-<h2 id="camada-de-visualizacao">📊 Camada de Visualização</h2>
+<h2 id="camada-de-visualizacao">Camada de Visualização</h2>
 <ul>
 <li>Dashboard interativo  </li>
 <li>Gráficos por subtema  </li>
@@ -782,15 +782,15 @@
 <li>Filtros por período, tema e deputado  </li>
 </ul>
 <hr />
-<h2 id="principios-arquiteturais">⚙️ Princípios Arquiteturais</h2>
+<h2 id="principios-arquiteturais">Princípios Arquiteturais</h2>
 <ul>
 <li>Separação entre processamento e visualização  </li>
 <li>Melhor desempenho e escalabilidade  </li>
 <li>Facilidade de manutenção  </li>
 </ul>
 <hr />
-<h1 id="mvp-produto-minimo-viavel">🚀 MVP (Produto Mínimo Viável)</h1>
-<h2 id="integracao-com-api">📡 Integração com API</h2>
+<h1 id="mvp-produto-minimo-viavel">MVP (Produto Mínimo Viável)</h1>
+<h2 id="integracao-com-api">Integração com API</h2>
 <ul>
 <li>Extração de dados  </li>
 <li>Download do inteiro teor  </li>
@@ -798,7 +798,7 @@
 <li>Armazenamento  </li>
 </ul>
 <hr />
-<h2 id="dashboard">📊 Dashboard</h2>
+<h2 id="dashboard">Dashboard</h2>
 <ul>
 <li>Dados disponíveis  </li>
 <li>Classificação por subtema  </li>
@@ -806,7 +806,7 @@
 <li>Ranking de parlamentares  </li>
 </ul>
 <hr />
-<h2 id="criterio-geral">🎯 Critério Geral</h2>
+<h2 id="criterio-geral">Critério Geral</h2>
 <p>O sistema deve permitir análise básica de proposições legislativas com base em temas e subtemas, apresentando os dados de forma clara no dashboard.</p>
 
 
