@@ -46,3 +46,32 @@ cd 2026-1-Squad10
 
 # 3. Suba a aplicação
 docker-compose up --build
+
+
+
+
+## 🧪 Ambiente de Testes
+
+Este projeto possui testes automatizados básicos configurados tanto para o Backend quanto para o Frontend.
+
+### Como rodar os testes do Backend (FastAPI)
+1. Navegue até a pasta do backend:
+   ```bash
+   cd backend
+
+2. Certifique-se de que o seu ambiente virtual (venv) está ativo.
+    para liberar a trava de segurança do Windows, use o comando:
+        Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+    para ativar o venv, use o comando:
+        venv\Scripts\activate
+
+3. Execute o comando:
+    pytest
+
+**Como rodar os testes do Frontend (React)**
+
+1. Navegue até a pasta do frontend:
+    cd frontend
+
+2. Execute o comando:
+    npm test
