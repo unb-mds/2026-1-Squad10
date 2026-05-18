@@ -16,16 +16,14 @@ import sys
 import os
 import logging
 from typing import Optional
-from sqlmodel import select
-
+from sqlmodel import select, Session, SQLModel
+from datetime import datetime
 import requests
 
 # Garante que o módulo backend/ seja encontrado quando executado diretamente
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from sqlmodel import Session
 from database import engine
-from models import Proposicao
+from models import Proposicao, Parlamentar
 
 # ---------------------------------------------------------------------------
 # Configuração de logging
@@ -137,129 +135,126 @@ def fetch_todas_proposicoes() -> list[dict]:
 # ---------------------------------------------------------------------------
 # CAMADA DE TRANSFORM — mapeia dados da API para o modelo do sistema
 # ---------------------------------------------------------------------------
+def fetch_autor_da_proposicao(id_proposicao_api: int) -> dict:
+    url = f"{BASE_URL}/proposicoes/{id_proposicao_api}/autores"
+    try:
+        response = requests.get(url, timeout=30, headers={"Accept": "application/json"})
+        response.raise_for_status()
+        dados = response.json().get("dados", [])
+        if dados:
+            return dados[0] # Pega o primeiro autor da lista
+    except Exception as exc:
+        logger.warning(f"Erro ao buscar autor da proposicao {id_proposicao_api}: {exc}")
+    return {}
 
-def transform_proposicao(dado_bruto: dict) -> Optional[Proposicao]:
-    """
-    Converte um dict retornado pela API da Câmara no modelo Proposicao
-    do nosso sistema.
-
-    Campos da API utilizados:
-        - siglaTipo + numero + ano  →  titulo  (ex: "PL 1234/2025"
-        - ementa                    →  descricao
-
-    Args:
-        dado_bruto: Dict com os dados brutos de uma proposição.
-
-    Returns:
-        Instância de Proposicao pronta para ser salva, ou None se dados
-        obrigatórios estiverem ausentes.
-    """
+# --- Atualize a Camada de Transform ---
+def transform_proposicao(dado_bruto: dict, autor_bruto: dict) -> Optional[tuple]:
     sigla = dado_bruto.get("siglaTipo", "PL")
     numero = dado_bruto.get("numero")
     ano = dado_bruto.get("ano")
     ementa = dado_bruto.get("ementa", "").strip()
-
-    # Valida campos mínimos necessários
+    
     if not numero or not ano or not ementa:
-        logger.debug(f"Proposição ignorada por dados incompletos: {dado_bruto.get('id')}")
         return None
+        
+    id_externo = dado_bruto.get("id")
+    
+    # 1. Monta o Parlamentar
+    parlamentar = None
+    id_autor = None
+    if autor_bruto:
+        uri = autor_bruto.get("uri", "")
+        try:
+            # A API da Camara esconde o ID do deputado no final da URI
+            id_autor = int(uri.split("/")[-1])
+        except:
+            id_autor = 999999 # ID generico caso seja um orgao sem ID claro
+            
+        parlamentar = Parlamentar(
+            id_parlamentar=id_autor,
+            nome=autor_bruto.get("nome", "Desconhecido")
+        )
+        
+    # 2. Formata a Data
+    data_apres = None
+    data_str = dado_bruto.get("dataApresentacao")
+    if data_str:
+        try:
+            data_apres = datetime.fromisoformat(data_str).date()
+        except:
+            pass
 
-    titulo = f"{sigla} {numero}/{ano}"
-    descricao = ementa or "Sem descrição disponível."
-
-    return Proposicao(
-        id_externo=dado_bruto.get("id"),
-        titulo=titulo,
-        descricao=descricao,
-        tema="Proteção Infantil Digital",
+    # 3. Monta a Proposicao
+    proposicao = Proposicao(
+        id_externo=id_externo,
+        id_autor=id_autor,
+        tipo=sigla,
+        numero=int(numero),
+        ano=int(ano),
+        ementa=ementa,
+        data_apresentacao=data_apres
     )
+    
+    return (proposicao, parlamentar)
 
-
-# ---------------------------------------------------------------------------
-# CAMADA DE SAVE — persiste no PostgreSQL via SQLModel
-# ---------------------------------------------------------------------------
-
-def save_proposicoes(proposicoes: list[Proposicao]) -> int:
-    """
-    Insere uma lista de Proposicao no banco de dados.
-    Usa uma única sessão/transação para eficiência.
-
-    Args:
-        proposicoes: Lista de instâncias de Proposicao a salvar.
-
-    Returns:
-        Número de registros efetivamente inseridos.
-    """
-    if not proposicoes:
-        logger.info("Nenhuma proposição para salvar.")
-        return 0
-
+# --- Atualize a Camada de Save ---
+def save_proposicoes(tuplas_prop_autor: list[tuple]) -> int:
     inseridos = 0
-
     with Session(engine) as session:
-        for prop in proposicoes:
+        for prop, autor in tuplas_prop_autor:
             try:
-                existente = session.exec(
-                    select(Proposicao).where(
-                        Proposicao.id_externo == prop.id_externo
-                )
+                # 1. Salva o Autor PRIMEIRO (para respeitar a chave estrangeira)
+                if autor:
+                    existente_autor = session.exec(
+                        select(Parlamentar).where(Parlamentar.id_parlamentar == autor.id_parlamentar)
+                    ).first()
+                    if not existente_autor:
+                        session.add(autor)
+                        session.flush() # Salva rapido para gerar o ID pro banco
+
+                # 2. Salva a Proposicao DEPOIS
+                existente_prop = session.exec(
+                    select(Proposicao).where(Proposicao.id_externo == prop.id_externo)
                 ).first()
-
-                if existente:
-                    continue
-
-                session.add(prop)
-                session.flush()
-                inseridos += 1
+                
+                if not existente_prop:
+                    session.add(prop)
+                    session.flush()
+                    inseridos += 1
+                    
             except Exception as exc:
-                logger.warning(f"Erro ao adicionar '{prop.titulo}': {exc}. Pulando.")
+                logger.warning(f"Erro ao adicionar proposicao {prop.numero}: {exc}")
                 session.rollback()
-                # Reabre a sessão implicitamente para continuar os próximos
                 continue
-
+                
         session.commit()
-        logger.info(f"{inseridos} proposições salvas com sucesso no banco de dados.")
-
     return inseridos
 
-
-# ---------------------------------------------------------------------------
-# PIPELINE PRINCIPAL
-# ---------------------------------------------------------------------------
-
+# --- Atualize o Pipeline Principal ---
 def run_pipeline() -> None:
-    """
-    Orquestra as três etapas do ETL:
-        1. Extract  — busca dados na API da Câmara
-        2. Transform — converte para o modelo interno
-        3. Load      — salva no PostgreSQL
-    """
-    logger.info("=== Iniciando pipeline ETL — Câmara dos Deputados ===")
+    logger.info("=== Iniciando pipeline ETL ===")
+    logger.info("Verificando/Criando tabelas no banco de dados...")
+    SQLModel.metadata.create_all(engine)
 
     # 1. EXTRACT
     dados_brutos = fetch_todas_proposicoes()
-
     if not dados_brutos:
-        logger.warning("Nenhum dado retornado pela API. Encerrando pipeline.")
         return
 
     # 2. TRANSFORM
-    proposicoes: list[Proposicao] = []
+    tuplas: list[tuple] = []
     for dado in dados_brutos:
-        prop = transform_proposicao(dado)
-        if prop:
-            proposicoes.append(prop)
+        # ATENCAO: Nova chamada extra na API para cada lei encontrada
+        autor_bruto = fetch_autor_da_proposicao(dado.get("id"))
+        resultado = transform_proposicao(dado, autor_bruto)
+        if resultado:
+            tuplas.append(resultado)
 
-    logger.info(f"{len(proposicoes)} proposições válidas após transformação.")
+    logger.info(f"{len(tuplas)} proposicoes prontas.")
 
     # 3. LOAD
-    total_salvo = save_proposicoes(proposicoes)
+    total_salvo = save_proposicoes(tuplas)
+    logger.info(f"=== Pipeline concluido. {total_salvo} registros inseridos. ===")
 
-    logger.info(f"=== Pipeline concluído. {total_salvo} registros inseridos. ===")
-
-
-# ---------------------------------------------------------------------------
-# Entry point
-# ---------------------------------------------------------------------------
 if __name__ == "__main__":
     run_pipeline()
