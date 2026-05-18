@@ -1,6 +1,33 @@
 {
-    "last_updated": "2026-05-18T05:40:40.329308Z",
+    "last_updated": "2026-05-18T16:49:43.955978Z",
     "commits": [
+        {
+            "hash": "00b579f7348326aa9ddede5392c56f9528cdfcae",
+            "date": "2026-05-18T13:49:13-03:00",
+            "message": "Merge pull request #47 from unb-mds/feat/camara-api",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "068f78db96d1506486c68dfa7cfa0cc5aead9fa4",
+            "date": "2026-05-18T13:37:20-03:00",
+            "message": "feat(crawler): corrige esquema do banco, adiciona criacao automatica de tabelas e resolve rede do docker",
+            "is_conventional": true,
+            "insertions": 123,
+            "deletions": 144,
+            "total_diff": 267
+        },
+        {
+            "hash": "696b7fd7ad097f441a3aaadff9748c66f4d32c86",
+            "date": "2026-05-18T12:45:03-03:00",
+            "message": "Merge branch 'main' into feat/camara-api",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
         {
             "hash": "5851f6b0639f45d55ce8764a08da488b5f6850da",
             "date": "2026-05-18T02:40:17-03:00",
@@ -234,6 +261,42 @@
             "insertions": 893,
             "deletions": 0,
             "total_diff": 893
+        },
+        {
+            "hash": "3daa025de1069af8560a55a7498aaaaa2b1902b9",
+            "date": "2026-05-11T13:28:30-03:00",
+            "message": "adiciona crawler da api da câmara refs #37",
+            "is_conventional": false,
+            "insertions": 265,
+            "deletions": 0,
+            "total_diff": 265
+        },
+        {
+            "hash": "41c5313310112f59290e07ffae2bccb554e9b4a3",
+            "date": "2026-05-11T13:26:35-03:00",
+            "message": "fix: corrige tabelas proposicoes e parlamentares",
+            "is_conventional": true,
+            "insertions": 6,
+            "deletions": 3,
+            "total_diff": 9
+        },
+        {
+            "hash": "07eba3c46d8a1521e5260dd4557290a4b4498ab1",
+            "date": "2026-05-11T13:22:09-03:00",
+            "message": "fix: retira 'container_name' refs #37",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 2,
+            "total_diff": 2
+        },
+        {
+            "hash": "6cef852a4aa22e0afe7044c296336f1c0272cb2d",
+            "date": "2026-05-11T13:18:49-03:00",
+            "message": "feat: adiciona tablename e id_externo refs #37",
+            "is_conventional": true,
+            "insertions": 2,
+            "deletions": 0,
+            "total_diff": 2
         },
         {
             "hash": "fa28fe915b9eafc6ce119b582cdf0418b63398fb",
@@ -1040,23 +1103,29 @@
         }
     ],
     "autores": {
+        "augustogmedeiros": {
+            "commits": 36,
+            "insercoes": 2492,
+            "delecoes": 13148,
+            "total_linhas": 15640
+        },
         "marispmorais": {
             "commits": 10,
             "insercoes": 2932603,
             "delecoes": 125,
             "total_linhas": 2932728
         },
-        "augustogmedeiros": {
-            "commits": 33,
-            "insercoes": 2369,
-            "delecoes": 13004,
-            "total_linhas": 15373
-        },
         "yaxavier": {
             "commits": 12,
             "insercoes": 546,
             "delecoes": 10,
             "total_linhas": 556
+        },
+        "Danielly Mendes": {
+            "commits": 8,
+            "insercoes": 731,
+            "delecoes": 13,
+            "total_linhas": 744
         },
         "cgbriel28": {
             "commits": 6,
@@ -1075,12 +1144,6 @@
             "insercoes": 54,
             "delecoes": 0,
             "total_linhas": 54
-        },
-        "Danielly Mendes": {
-            "commits": 4,
-            "insercoes": 458,
-            "delecoes": 8,
-            "total_linhas": 466
         }
     }
 }
